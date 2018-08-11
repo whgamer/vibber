@@ -1,0 +1,56 @@
+{% extends 'music/base_schedule.html' %}
+{% block title %}所有预约_base_schedule{% endblock %}
+{#{% block songs_active %}active{% endblock %}#}
+
+{% block body %}
+<div class="container-fluid schedules-container">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="nav nav-pills" style="margin-bottom: 10px;">
+                <li role="presentation" {% if filter_by == 'all' %}class="active"{% endif %}><a href="{% url 'music:schedules' 'all' %}">查看所有</a></li>
+                <li role="presentation" {% if filter_by == 'favorites' %}class="active"{% endif %}><a href="{% url 'music:schedules' 'favorites' %}">标记</a></li>
+{#                {% if filter_by == 'favorites' %}class="active"{% endif %}><a href="{% url 'music:schedules' 'favorites' %}#}
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>姓名</th>
+                                <th>预约日期</th>
+                                <th>电话号码</th>
+                                <th>状态</th>
+                                <th>备注</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for schedule in schedule_list %}
+                                <tr>
+                                     <td>{{ schedule.id}}</td>
+                                    <td>{{ schedule.schedule_name}}</td>
+                                    <td>{{ schedule.schedule_date }}</td>
+                                    <td>{{ schedule.schedule_telephone }}</td>
+                                    <td><a >{{ schedule.schedule_status }}</a></td>
+                                    <td>{{ schedule.schedule_memo }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
